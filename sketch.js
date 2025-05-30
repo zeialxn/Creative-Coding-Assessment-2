@@ -1,53 +1,22 @@
+var trail = [];
+
 function setup() {
-  createCanvas(1000, 1000);
-  textAlign(CENTER, CENTER);
-  textSize(100);
-  background(128, 0, 32);
+  createCanvas(400, 400);
+  noStroke();
+  fill(250,250,250);
 }
 
 function draw() {
-  noStroke();
-  fill(128, 0, 32, 10);
-  rect(0, 0, width, height);
+  background(0,0,100);
+  trail.push([mouseX, mouseY]);
+  
+  for (i=0; i<trail.length; i++) {
+    let s = 40*(i/trail.length);// size
+    ellipse(trail[i][0], trail[i][1], s);
+  }
+  
+  if (trail.length > 20) {
+    trail.shift();
+  }
 
-  push();
-  drawingContext.shadowColor = 'rgba(0, 0, 0, 0.5)';
-  drawingContext.shadowBlur = 15;
-  drawingContext.shadowOffsetX = 5;
-  drawingContext.shadowOffsetY = 5;
-
-  fill(0);
-  noStroke();
-  ellipse(500, 500, 700, 700);
-  pop();
-
-  fill(240);
-  ellipse(500, 500, 100, 100);
-
-  fill(20);
-  ellipse(850, 150, 100, 100);
-
-  //text color
-  fill(128, 0, 32);
-
-  push();
-  translate(width / 2, height / 2);
-  rotate(frameCount * 0.02);
-  textFont("Brush Script MT");
-  stroke(0);
-  text("Bath Spa University", 0, 0);
-  pop();
-
-  push();
-  stroke(255);
-  strokeWeight(35);
-  line(850, 150, 690, 700);
-
-  stroke(255);
-  strokeWeight(35);
-  line(685, 710, 640, 720);
-  pop();
-
-  fill(255);
-  ellipse(850, 150, 70, 70);
 }
