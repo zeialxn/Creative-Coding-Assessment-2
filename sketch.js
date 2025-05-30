@@ -1,22 +1,44 @@
-var trail = [];
+let sound, amp, start = false;
+
+let colors = ["#410445",
+              "#A5158C",
+              "#FF2DF1",
+              "#D34DEE",
+              "#BF4BF8"];
+
+function preload() {
+  sound = loadSound('beat.mp3');
+}
 
 function setup() {
-  createCanvas(400, 400);
-  noStroke();
-  fill(250,250,250);
+  createCanvas(windowWidth, windowHeight);
+  background(0);
+  textAlign(CENTER, CENTER);
+  textSize(32);
+  fill(255);
+  text("Press anywhere to start.", width / 2, height / 2);
+  textFont('Georgia');
 }
 
 function draw() {
-  background(0,0,100);
-  trail.push([mouseX, mouseY]);
-  
-  for (i=0; i<trail.length; i++) {
-    let s = 40*(i/trail.length);// size
-    ellipse(trail[i][0], trail[i][1], s);
-  }
-  
-  if (trail.length > 20) {
-    trail.shift();
-  }
+  if (!start) return;
 
+  background(0, 15);
+  let level = amp.getLevel();
+  let bars = 50;
+  let w = width / bars;
+
+  for (let i = 0; i < bars; i++) {
+    let h = level * random(200, 800);
+    fill(random(colors));
+    rect(i * w, height - h, w - 2, h);
+  }
+}
+
+function mousePressed() {
+  if (!start) {
+    sound.play();
+    amp = new p5.Amplitude();
+    start = true;
+  }
 }
