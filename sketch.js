@@ -1,16 +1,27 @@
+let ball;
+let ballSpeed = -1;
+
 function setup() {
   createCanvas(400, 400);
   noStroke();
+  ball = height;
 }
 
 function draw() {
   background(0, 150, 0);
 
+  let x = width / 2;
+  let y = map(ball, height, 70, 130, 30);  
+
   drawSky();
   drawGoal();
 
   fill(230, 230, 230);
-  ellipse(200,330,115,115);
+  ellipse(x, ball, y, y);
+
+  if (ball > 70) {
+    ball += ballSpeed;
+  }
 }
 
 function drawSky() {
