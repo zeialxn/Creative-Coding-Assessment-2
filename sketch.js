@@ -1,18 +1,16 @@
-var img, x, y;
+var img;
 function preload() {
-  img = loadImage("smurfhouse.jpeg");
+  img = loadImage("smurfhouse.jpeg")
 }
 
 function setup() {
-  createCanvas (1000, 750);
+  createCanvas(1000, 750);
   background(0);
-  noStroke();
 }
 
 function draw() {
-  x = random(width);
-  y = random(height);
-  var c = img.get(x, y);
-  fill(c[0], c[1], c[2], 100);
-  ellipse(x, y, 30, 30);
+  background(0);
+  image(img, 0, 0);
+  var v = map(mouseX, 0, width, 1, 10);
+  filter(POSTERIZE, v);
 }
