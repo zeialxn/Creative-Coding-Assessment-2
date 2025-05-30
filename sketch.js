@@ -1,28 +1,53 @@
 function setup() {
-  createCanvas(400, 400);
-  noLoop();
+  createCanvas(1000, 1000);
+  textAlign(CENTER, CENTER);
+  textSize(100);
+  background(128, 0, 32);
 }
 
 function draw() {
-  background(100, 25, 105);
-  let spacing = 80;
-
-  for (let x = spacing / 2; x < width; x += spacing) {
-    for (let y = spacing / 2; y < height; y += spacing) {
-      let colorone = color(random(255), random(255), random(255));
-      let colortwo = color(random(255), random(255), random(255));
-      drawDoubleEllipse(x, y, 60, 30, colorone, colortwo);
-    }
-  }
-}
-
-function drawDoubleEllipse(x, y, bigcircle, smallcircle, colorone, colortwo) {
   noStroke();
+  fill(128, 0, 32, 10);
+  rect(0, 0, width, height);
 
-  fill(colorone);
-  ellipse(x, y, bigcircle);
+  push();
+  drawingContext.shadowColor = 'rgba(0, 0, 0, 0.5)';
+  drawingContext.shadowBlur = 15;
+  drawingContext.shadowOffsetX = 5;
+  drawingContext.shadowOffsetY = 5;
 
-  fill(colortwo);
-  ellipse(x, y, smallcircle);
+  fill(0);
+  noStroke();
+  ellipse(500, 500, 700, 700);
+  pop();
+
+  fill(240);
+  ellipse(500, 500, 100, 100);
+
+  fill(20);
+  ellipse(850, 150, 100, 100);
+
+  //text color
+  fill(128, 0, 32);
+
+  push();
+  translate(width / 2, height / 2);
+  rotate(frameCount * 0.02);
+  textFont("Brush Script MT");
+  stroke(0);
+  text("Bath Spa University", 0, 0);
+  pop();
+
+  push();
+  stroke(255);
+  strokeWeight(35);
+  line(850, 150, 690, 700);
+
+  stroke(255);
+  strokeWeight(35);
+  line(685, 710, 640, 720);
+  pop();
+
+  fill(255);
+  ellipse(850, 150, 70, 70);
 }
-
